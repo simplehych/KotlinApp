@@ -6,9 +6,10 @@ import android.widget.TextView
 import java.util.*
 
 /**
- * Created by hych on 2017/5/22 17:08
+ * Created by hych on 2017/5/24 09:42
  */
-class ForecastListAdapter(val items: ArrayList<String>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+class ForecastListAdapter(val items: List<String>) : RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return ViewHolder(TextView(parent?.context))
     }
@@ -19,7 +20,5 @@ class ForecastListAdapter(val items: ArrayList<String>) : RecyclerView.Adapter<F
 
     override fun getItemCount(): Int = items.size
 
-
     class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
-
 }
