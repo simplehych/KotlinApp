@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+}
+
+/**
+ * Jcenter Bintray,以下配置和工程build.gradle下配置
+ * 在Terminal执行命令
+ * gradlew clean build bintrayUpload -PbintrayUser=xxx -PbintrayKey=xxx -PdryRun=false
+ */
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = 'simplehych'//bintray.com用户名
+    repoName = 'happy'//默认为maven时可以不写
+    groupId = 'com.simplehych.happy'//jcenter上的路径，最好规范书写，和包名一致
+    artifactId = 'bintray'//项目名称，最好与Library同名，但亲测没有影响
+    publishVersion = '1.0.0'
+    desc = 'simple，happy'
+    website = 'https://github.com/simplehych/HappilyEverAfter'
+}
