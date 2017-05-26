@@ -1,33 +1,23 @@
 package com.simple.kotlinapp
 
-import android.content.Context
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
-import com.simple.kotlinapp.domain.model.Forecast
-import org.jetbrains.anko.*
+import org.jetbrains.anko.async
+import org.jetbrains.anko.asyncResult
+import org.jetbrains.anko.find
+import org.jetbrains.anko.uiThread
 import java.util.*
-import java.util.concurrent.Future
+
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * 在Kotlin中，一切都是对象，没有原始的基本类型
  */
 class MainActivity : AppCompatActivity() {
-
-    private val items = arrayListOf(
-            "Mon 6/23 - Sunny - 31/17",
-            "Tue 6/24 - Foggy - 21/8",
-            "Wed 6/25 - Cloudy - 22/17",
-            "Thurs 6/26 - Rainy - 18/11",
-            "Fri 6/27 - Foggy - 21/10",
-            "Sat 6/28 - TRAPPED IN WEATHERSTATION - 23/18",
-            "Sun 6/29 - Sunny - 20/7"
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +25,11 @@ class MainActivity : AppCompatActivity() {
 
         /**
          * 1、as 强转      2、直接属性方式设置      3、省去new关键字
+         * 使用了插件手动导入，可以不再使用findid的形式，但是要保证id和Xml文件一致
+         * import kotlinx.android.synthetic.main.activity_main.*
          */
         //        val forecastList = findViewById(R.id.forecast_list) as RecyclerView
-        val forecastList: RecyclerView = find(R.id.forecast_list)   //简洁，此为使用了Anko，上行未使用
+        //        val forecastList: RecyclerView = find(R.id.forecast_list)   //简洁，此为使用了Anko，上行未使用
         forecastList.layoutManager = LinearLayoutManager(this)
 
         /**
@@ -51,8 +43,8 @@ class MainActivity : AppCompatActivity() {
          */
         async() {
             //            val url = "http://www.baidu.com"
-//            Request(url).run()
-//            uiThread { longToast("Request performed") }
+            //            Request(url).run()
+            //            uiThread { longToast("Request performed") }
             val result = RequestForecastCommand("94043").execute()
             uiThread {
                 forecastList.adapter = ForecastListAdapter(result) { toast(it.date) }
