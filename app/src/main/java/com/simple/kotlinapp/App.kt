@@ -1,6 +1,8 @@
 package com.simple.kotlinapp
 
 import android.app.Application
+import android.database.sqlite.SQLiteOpenHelper
+import kotlin.properties.Delegates
 
 /**
  * Created by hych on 2017/5/26 10:42
@@ -20,9 +22,25 @@ class App : Application() {
         fun instance() = instance!!
     }
 
+//    val database :SQLiteOpenHelper by lazy {
+//        MyDatabaseHelper(applicationContext)
+//    }
+
     override fun onCreate() {
         super.onCreate()
         instance = this
     }
 
 }
+
+//class ViewModel(val db: MyDatabase) {
+//    var myProperty by Delegates.observable("") {
+//        d, old, new ->
+//        db.saveChanges(this, new)
+//    }
+//
+//    var positiveNumber = Delegates.vetoable(0) {
+//        d, old, new ->
+//        new >= 0
+//    }
+//}
