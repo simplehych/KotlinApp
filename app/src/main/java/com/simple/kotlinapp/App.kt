@@ -34,9 +34,12 @@ class App : Application() {
          *
          * TODO Java代码也会抛异常吧？没有看出区别或者好处？
          */
-        var instance: App by Delegates.notNull()
+        //        var instance: App by Delegates.notNull()
 
         //        private var instance: Application? = null
+
+        var instance: App by NotNullSingleValueVar.DelegatesExt.notNullSingleValue()
+
         fun instance() = instance!!
     }
 
