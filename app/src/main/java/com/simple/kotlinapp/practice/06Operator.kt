@@ -5,8 +5,10 @@ package com.simple.kotlinapp.practice
  */
 class `06Operator` {
 
-    fun operator() {
-
+    /**
+     * 总数操作符
+     */
+    fun operator1() {
 
         val list = listOf(1, 2, 3, 4, 5, 6)
 
@@ -101,5 +103,70 @@ class `06Operator` {
         list.sumBy { it % 2 }
     }
 
+    /**
+     * 过滤操作符
+     */
+    fun operator2() {
+        val list = listOf(1, 2, 3, 4, 5, 6)
 
+        /**
+         * drop
+         * 返回包含去掉前n个元素的所有元素的列表
+         */
+        list.drop(4)
+
+        /**
+         * dropWhile
+         * 返回根据给定函数从第一项开始去掉指定元素的列表
+         */
+        list.dropLastWhile { it < 3 }
+
+        /**
+         * dropLastWhile
+         * 返回根据给定函数从最后一项开始去掉指定元素的列表
+         */
+        list.dropLastWhile { it > 4 }
+
+        /**
+         * filter
+         * 过滤所有给定函数条件的元素
+         */
+        list.filter { it % 2 == 0 }
+
+        /**
+         * filterNot
+         * 过滤所有不符合给定函数条件的元素
+         */
+        list.filterNot { it % 2 == 0 }
+
+        /**
+         * filterNotNull
+         * 过滤所有元素中不是null的元素
+         */
+        list.filterNotNull()
+
+        /**
+         * slice
+         * 过滤一个list中指定index的元素
+         */
+        list.slice(listOf(1, 2))
+
+        /**
+         * take
+         * 返回从第一个开始的n个元素
+         */
+        list.take(2)
+
+        /**
+         * takeLast
+         * 返回从最后一个开始的n个元素
+         */
+        list.takeLast(2)
+
+        /**
+         * takeLastWhile
+         * 返回从第一个开始符合给定函数条件的元素
+         */
+        list.takeLastWhile { it < 3 }
+    }
 }
