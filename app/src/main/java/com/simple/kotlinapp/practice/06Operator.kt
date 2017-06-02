@@ -349,4 +349,46 @@ class `06Operator` {
         Pair(listOf(5, 6), listOf(7, 8))
         listOf(Pair(5, 7), Pair(6, 8)).unzip()
     }
+
+    /**
+     * 顺序操作符
+     */
+    fun operator6() {
+        val unsortedList = listOf(3, 2, 7, 5)
+
+        /**
+         * reversed
+         * 返回一个与指定list相反顺序的list
+         */
+        listOf(5, 7, 2, 3)
+        unsortedList.reversed()
+
+        /**
+         * sorted
+         * 返回一个自然排序后的list
+         */
+        listOf(2, 3, 5, 7)
+        unsortedList.sorted()
+
+        /**
+         * sortBy
+         * 返回一个根据指定函数排序后的list
+         */
+        listOf(3, 7, 2, 5)
+        unsortedList.sortedBy { it % 3 }
+
+        /**
+         * sortDescending
+         * 返回一个降序排序后的List
+         */
+        listOf(7, 5, 3, 2)
+        unsortedList.sortedDescending()
+
+        /**
+         * sortedByDescending
+         * 返回一个根据指定函数将序排列后的list
+         */
+        listOf(2, 5, 7, 3)
+        unsortedList.sortedByDescending { it % 3 }
+    }
 }
