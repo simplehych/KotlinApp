@@ -304,4 +304,49 @@ class `06Operator` {
          */
         list.singleOrNull { it % 7 == 0 }
     }
+
+    /**
+     * 生产操作符
+     */
+    fun operator5() {
+        val list = listOf(1, 2, 3, 4, 5, 6)
+
+        /**
+         * merge  未找到
+         * 把两个集合合并成一个新的，相同index的元素通过给定的函数进行合并成新的元素作为新的集合的一个元素，
+         * 返回这个新的集合。新的集合的大小由最小的那个集合大小决定。
+         * listOf(3, 4, 6, 8, 10, 11)
+         * list.merge(listRepeated) { it1, it2 -> it1 + it2 }
+         */
+        val listRepeated = listOf(2, 2, 3, 4, 5, 5, 6)
+
+        /**
+         * partition
+         * 把一个给定的集合分割成两个，第一个集合是由原集合每一项元素匹配给定函数条件返回true的元素组成，
+         * 第二个集合是由原集合每一项元素匹配给定函数条件返回false的元素组成
+         */
+        Pair(listOf(2, 4, 6), listOf(1, 3, 5))
+        list.partition { it % 2 == 0 }
+
+        /**
+         * plus
+         * 返回一个包含原集合和给定集合中多有元素的集合，因为函数名字的原因，我们可以使用‘+’操作符
+         */
+        list.plus(listOf(7, 8))
+        list + listOf(7, 8)
+
+        /**
+         * zip
+         * 返回由Pair组成的List，每个Pair由俩个集合中相同index的元素组成。这个返回的List的大小由最小的那个集合决定
+         */
+        listOf(Pair(1, 7), Pair(2, 8))
+        list.zip(listOf(7, 8))
+
+        /**
+         * unzip
+         * 从包含pair的list中生成包含list的Pair
+         */
+        Pair(listOf(5, 6), listOf(7, 8))
+        listOf(Pair(5, 7), Pair(6, 8)).unzip()
+    }
 }
