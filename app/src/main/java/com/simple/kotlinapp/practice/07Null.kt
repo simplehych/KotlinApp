@@ -56,6 +56,23 @@ class `07Null` {
          */
         aa!!.toString()
 
+        /**
+         * 我们会发现，在getObject函数上会显示一个警告，但是这只是从现在才开始编译器检查，并且
+         * 它还不认识Android的注解，所以我们可能不得不花更多的时间等待一个更智能的方式。不管怎么样
+         * 使用源码注解的方式和一些AndroidSDK的知识，我们也很难犯错误
+         *
+         * 比如重写Activity的OnCreate函数，我们可以决定是否让savedInstanceState可null
+         * override fun onCreate(savedInstanceState: Bundle?) {}
+         * override fun onCreate(savedInstanceState: Bundle) {}
+         * 这俩种方法都会被编译，但是第二种是错误的，因为一个Activity很可能接受到一个null的bundle。
+         * 只要小心一点点就足够了。当你有疑问时，你可以就用可null的对象然后处理掉用可能的null，记住，
+         * 如果你使用了!!，坑是因为你确信对象不可能为null，如果是这样，请定义为非null
+         * 这个灵活性在java库中真的很有必要，而且随着编译器的进化，我们将可能看到更好的交互（可能是基于注解的），
+         * 但是现在来说这个机制足够灵活了
+         */
+        val test = NullTest()
+        val myObject :Any = test.`object`!!
+
         return false
     }
 }
